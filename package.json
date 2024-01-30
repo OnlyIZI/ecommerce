@@ -5,7 +5,8 @@
   "repository": "https://github.com/OnlyIZI/ecommerce.git",
   "license": "MIT",
   "scripts": {
-    "dev": "tsx watch api/server.ts"
+    "dev": "tsx watch api/server.ts",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@types/cookie-parser": "^1.4.6",

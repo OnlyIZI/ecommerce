@@ -22,3 +22,13 @@ enum Role {
   admin
   customer
 }
+
+model Adress {
+  adress_id  String @id @default(cuid())
+  adress     String @unique
+  city       String
+  state      String
+  district   String
+  number     Int
+  postalCode String
+}

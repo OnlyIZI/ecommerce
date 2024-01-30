@@ -3,6 +3,7 @@ import { BadRequest } from "exceptions/badRequest";
 import { NotFound } from "exceptions/notFound";
 import { Request, Response } from "express";
 import userRepository from "repository/userRepository";
+import bcrypt from "bcrypt";
 
 // Register
 export const register = async (req: Request, res: Response) => {
@@ -14,16 +15,20 @@ export const register = async (req: Request, res: Response) => {
     throw new BadRequest("User or password incorrect.");
   }
 
-  // const hashPassword = await bcrypt.hash(password, 10);
+  const hashPassword = await bcrypt.hash(password, 10);
 
-  const newUser = await userRepository.register(name, email, password);
+  const newUser = await userRepository.register(name, email, hashPassword);
 
-  return res.status(201).json(newUser);
+  if (!newUser) {
+    throw new BadRequest("Something went wrong.");
+  }
+
+  return res.status(201).json("Registered.");
 };
 
 // Get user
 export const getUserById = async (req: Request, res: Response) => {
-  const { id } = req.body;
+  const { id } = req.payload;
 
   const user = await userRepository.getUserById(id);
 
@@ -53,7 +58,7 @@ export const updateUser = async (req: Request, res: Response) => {
 
 // Delete user
 export const deleteUser = async (req: Request, res: Response) => {
-  const id = req.body;
+  const { id } = req.payload;
 
   const user = await userRepository.deleteUser(id);
 

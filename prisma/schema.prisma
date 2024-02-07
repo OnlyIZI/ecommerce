@@ -3,7 +3,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "./generated/client"
 }
 
 datasource db {
@@ -24,12 +23,12 @@ enum Role {
   customer
 }
 
-model Adress {
-  adress_id  String @id @default(cuid())
-  adress     String @unique
-  city       String
-  state      String
-  district   String
-  number     Int
-  postalCode String
-}
+// model Adress {
+//   adress_id  String @id @default(cuid())
+//   adress     String @unique
+//   city       String
+//   state      String
+//   district   String
+//   number     Int
+//   postalCode String
+// }

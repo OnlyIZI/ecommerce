@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  api:
+    container_name: api-ecommerce
+    ports:
+      - "3333:3333"
+    restart: always
+    volumes:
+      - .:/usr/src/app
+    build:
+      context: .
+    healthcheck:
+      interval: 5s
+      timeout: 5s
+      retries: 5

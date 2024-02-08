@@ -27,6 +27,7 @@ export const login = async (req: Request, res: Response) => {
 
   res.cookie("auth", token, {
     httpOnly: true,
+    
   });
   return res.status(200).json({ id, name });
 };

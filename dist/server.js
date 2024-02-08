@@ -300,9 +300,7 @@ app.use(import_express2.default.json());
 app.use((0, import_cookie_parser.default)());
 app.use(
   (0, import_cors.default)({
-    credentials: true,
-    origin: "*",
-    methods: ["POST", "GET", "PUT", "DELETE"]
+    origin: "*"
   })
 );
 app.use(routes);

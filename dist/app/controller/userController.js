@@ -31,6 +31,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var userController_exports = {};
 __export(userController_exports, {
   deleteUser: () => deleteUser,
+  getAll: () => getAll,
   getUserById: () => getUserById,
   register: () => register,
   updateUser: () => updateUser
@@ -154,9 +155,14 @@ var deleteUser = async (req, res) => {
   res.clearCookie("auth");
   return res.status(200).json("Deleted.");
 };
+var getAll = async (req, res) => {
+  const getAll2 = await userRepository_default.getAllUser();
+  return res.status(200).json(getAll2);
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   deleteUser,
+  getAll,
   getUserById,
   register,
   updateUser

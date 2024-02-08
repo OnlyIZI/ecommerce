@@ -26,6 +26,7 @@ routes.put(
   userController.updateUser,
 );
 routes.delete("/user/delete", isAuthenticated, userController.deleteUser);
+routes.get("/getall", isAuthenticated, userController.getAll);
 
 // Admin Controller
 routes.post(

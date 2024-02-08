@@ -27,8 +27,6 @@ export const login = async (req: Request, res: Response) => {
 
   res.cookie("auth", token, {
     httpOnly: true,
-    maxAge: 60 * 60 * 3,
-    sameSite: "strict",
   });
   return res.status(200).json({ id, name });
 };

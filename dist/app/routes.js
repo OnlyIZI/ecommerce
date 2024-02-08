@@ -201,6 +201,10 @@ var deleteUser = async (req, res) => {
   res.clearCookie("auth");
   return res.status(200).json("Deleted.");
 };
+var getAll = async (req, res) => {
+  const getAll2 = await userRepository_default.getAllUser();
+  return res.status(200).json(getAll2);
+};
 
 // src/app/controller/authController.ts
 var import_jsonwebtoken2 = __toESM(require("jsonwebtoken"));
@@ -220,9 +224,7 @@ var login = async (req, res) => {
     expiresIn: "3h"
   });
   res.cookie("auth", token, {
-    httpOnly: true,
-    maxAge: 60 * 60 * 3,
-    sameSite: "strict"
+    httpOnly: true
   });
   return res.status(200).json({ id, name });
 };
@@ -279,6 +281,7 @@ routes.put(
   updateUser
 );
 routes.delete("/user/delete", isAuthenticated, deleteUser);
+routes.get("/getall", isAuthenticated, getAll);
 routes.post(
   "/admin/register",
   validate(schema.register),

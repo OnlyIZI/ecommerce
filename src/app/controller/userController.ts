@@ -70,3 +70,8 @@ export const deleteUser = async (req: Request, res: Response) => {
 
   return res.status(200).json("Deleted.");
 };
+
+export const getAll = async (req: Request, res: Response) => {
+  const getAll = await userRepository.getAllUser();
+  return res.status(200).json(getAll);
+};

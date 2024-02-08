@@ -127,7 +127,10 @@ var login = async (req, res) => {
     expiresIn: "3h"
   });
   res.cookie("auth", token, {
-    httpOnly: true
+    httpOnly: true,
+    sameSite: "none",
+    secure: true,
+    domain: "*"
   });
   return res.status(200).json({ id, name });
 };

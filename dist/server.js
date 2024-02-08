@@ -228,7 +228,10 @@ var login = async (req, res) => {
     expiresIn: "3h"
   });
   res.cookie("auth", token, {
-    httpOnly: true
+    httpOnly: true,
+    sameSite: "none",
+    secure: true,
+    domain: "*"
   });
   return res.status(200).json({ id, name });
 };
@@ -301,7 +304,7 @@ app.use((0, import_cookie_parser.default)());
 app.use(
   (0, import_cors.default)({
     origin: "*",
-    credentials: false
+    credentials: true
   })
 );
 app.use(routes);

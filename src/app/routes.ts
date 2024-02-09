@@ -18,7 +18,7 @@ routes.post(
   validate(schema.register),
   userController.register,
 );
-routes.get("/get", isAuthenticated, userController.getUserById);
+routes.get("/get", isAuthenticated, userController.getUserById); // Get user By Id
 routes.put(
   "/user/update",
   validate(schema.register),
@@ -26,7 +26,6 @@ routes.put(
   userController.updateUser,
 );
 routes.delete("/user/delete", isAuthenticated, userController.deleteUser);
-routes.get("/getall", isAuthenticated, userController.getAll);
 
 // Admin Controller
 routes.post(

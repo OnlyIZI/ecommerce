@@ -23,10 +23,6 @@ class userRepository {
   async getUserByEmail(email: string) {
     return await prisma.user.findUnique({ where: { email } });
   }
-  // Get All User
-  async getAllUser() {
-    return await prisma.user.findMany();
-  }
   // Update user
   async updateUser(name: string, email: string, password: string) {
     const user = await prisma.user.update({

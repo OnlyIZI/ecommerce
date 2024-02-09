@@ -131,10 +131,6 @@ var userRepository = class {
   async getUserByEmail(email) {
     return await prisma.user.findUnique({ where: { email } });
   }
-  // Get All User
-  async getAllUser() {
-    return await prisma.user.findMany();
-  }
   // Update user
   async updateUser(name, email, password) {
     const user = await prisma.user.update({
@@ -180,7 +176,8 @@ var getUserById = async (req, res) => {
   if (!user) {
     throw new NotFound("User or password incorrect.");
   }
-  return res.status(200).json(user);
+  const { name, email } = user;
+  return res.status(200).json({ name, email });
 };
 var updateUser = async (req, res) => {
   const { name, email, password } = req.body;
@@ -200,10 +197,6 @@ var deleteUser = async (req, res) => {
   }
   res.clearCookie("auth");
   return res.status(200).json("Deleted.");
-};
-var getAll = async (req, res) => {
-  const getAll2 = await userRepository_default.getAllUser();
-  return res.status(200).json(getAll2);
 };
 
 // src/app/controller/authController.ts
@@ -284,7 +277,6 @@ routes.put(
   updateUser
 );
 routes.delete("/user/delete", isAuthenticated, deleteUser);
-routes.get("/getall", isAuthenticated, getAll);
 routes.post(
   "/admin/register",
   validate(schema.register),

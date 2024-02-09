@@ -36,7 +36,9 @@ export const getUserById = async (req: Request, res: Response) => {
     throw new NotFound("User or password incorrect.");
   }
 
-  return res.status(200).json(user);
+  const {name, email} = user
+
+  return res.status(200).json({name, email});
 };
 
 // Update
@@ -69,9 +71,4 @@ export const deleteUser = async (req: Request, res: Response) => {
   res.clearCookie("auth");
 
   return res.status(200).json("Deleted.");
-};
-
-export const getAll = async (req: Request, res: Response) => {
-  const getAll = await userRepository.getAllUser();
-  return res.status(200).json(getAll);
 };

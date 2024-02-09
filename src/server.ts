@@ -11,7 +11,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "*",
+    origin: ["http://locahost:3000", "https://ecommerce-front-self.vercel.app"],
+    methods: ['POST',  'GET', 'PUT', "DELETE"],
     credentials: true,
   }),
 );
